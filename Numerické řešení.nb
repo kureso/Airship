@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8059,        234]
-NotebookOptionsPosition[      6851,        206]
-NotebookOutlinePosition[      7257,        222]
-CellTagsIndexPosition[      7214,        219]
+NotebookDataLength[      9755,        264]
+NotebookOptionsPosition[      8546,        236]
+NotebookOutlinePosition[      8951,        252]
+CellTagsIndexPosition[      8908,        249]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -173,39 +173,69 @@ Cell[BoxData[
       RowBox[{"B", ",", "0"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{"\[Beta]", ",", "0"}], "}"}]}], "}"}]}], "]"}]], "Input",
- CellChangeTimes->{{3.8278448097688303`*^9, 3.827844870844804*^9}},
- CellLabel->"In[30]:=",ExpressionUUID->"53b09bb5-b21a-452a-b3f0-6778020f7493"],
+ CellChangeTimes->{{3.8278448097688303`*^9, 3.827844870844804*^9}, {
+  3.827909918137699*^9, 3.827909956067047*^9}},
+ CellLabel->
+  "In[246]:=",ExpressionUUID->"53b09bb5-b21a-452a-b3f0-6778020f7493"],
 
 Cell[BoxData[
  TemplateBox[{
   "FindRoot", "nlnum", 
    "\"The function value \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{RowBox[{\
-\\\"-\\\", \\\"1\\\"}], \\\"+\\\", RowBox[{\\\"7.450580541412674`*^-9\\\", \\\
-\" \\\", \\\"h\\\"}]}], \\\",\\\", RowBox[{RowBox[{\\\"-\\\", \\\"1\\\"}], \\\
-\"+\\\", RowBox[{\\\"2.220446049250313`*^-16\\\", \\\" \\\", \\\"h\\\"}]}]}], \
-\\\"}\\\"}]\\) is not a list of numbers with dimensions \
+\\\"-\\\", \\\"1.`\\\"}], \\\"+\\\", RowBox[{\\\"50.`\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"0.5`\\\"}], \\\" \\\
+\", RowBox[{\\\"Log\\\", \\\"[\\\", RowBox[{RowBox[{\\\"Power\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\" \\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\"]\\\"}]}], \\\"+\\\", RowBox[{\\\"0.5`\\\", \\\" \\\", RowBox[{\\\"Log\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\
+\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Sec\\\", \\\"[\\\", \
+\\\"\[Beta]end\\\", \\\"]\\\"}], \\\"-\\\", RowBox[{\\\"1.`\\\", \\\" \\\", \
+RowBox[{\\\"Sec\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}], \\\")\\\"}], \\\" \\\", RowBox[{\
+\\\"Tan\\\", \\\"[\\\", \\\"\[Beta]start\\\", \\\"]\\\"}]}]}], \
+\\\")\\\"}]}]}], \\\",\\\", RowBox[{RowBox[{\\\"-\\\", \\\"1.`\\\"}], \\\"+\\\
+\", RowBox[{\\\"50.`\\\", \\\" \\\", RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"1.`\\\"}], \\\" \\\", \
+RowBox[{\\\"Sec\\\", \\\"[\\\", \\\"\[Beta]end\\\", \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"Sec\\\", \\\"[\\\", \\\"\[Beta]start\\\", \\\"]\\\"}]}], \
+\\\")\\\"}]}]}]}], \\\"}\\\"}]\\) is not a list of numbers with dimensions \
 \\!\\(\\*RowBox[{\\\"{\\\", \\\"2\\\", \\\"}\\\"}]\\) at \
 \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"B\\\", \\\",\\\", \\\"\[Beta]\\\"}], \
-\\\"}\\\"}]\\) = \\!\\(\\*RowBox[{\\\"{\\\", \
-RowBox[{\\\"1.4901161193847656`*^-8\\\", \\\",\\\", \\\"0.`\\\"}], \
-\\\"}\\\"}]\\).\"", 2, 30, 16, 25937067759595971621, "Local"},
+\\\"}\\\"}]\\) = \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"0.`\\\", \\\",\\\", \
+\\\"0.`\\\"}], \\\"}\\\"}]\\).\"", 2, 246, 71, 25937440753082735758, "Local"},
   "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8278448714190674`*^9},
+ CellChangeTimes->{
+  3.8278448714190674`*^9, {3.827909929949221*^9, 3.827909956645363*^9}},
  CellLabel->
   "During evaluation of \
-In[30]:=",ExpressionUUID->"3911974b-49ae-4c4f-a48c-24c32b9cb092"],
+In[246]:=",ExpressionUUID->"ef1110b7-ea1a-478c-b1e4-24f3c536eb82"],
 
 Cell[BoxData[
- RowBox[{"{", 
+ RowBox[{"FindRoot", "[", 
   RowBox[{
-   RowBox[{"B", "\[Rule]", "0.`"}], ",", 
-   RowBox[{"\[Beta]", "\[Rule]", "0.`"}]}], "}"}]], "Output",
- CellChangeTimes->{3.827844871429072*^9},
- CellLabel->"Out[30]=",ExpressionUUID->"ea77d904-80b5-45a7-a4ff-e4a20bbd8454"]
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"X1", "\[Equal]", "1"}], ",", 
+     RowBox[{"X2", "\[Equal]", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"B", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Beta]", ",", "0"}], "}"}]}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.827844871429072*^9, {3.82790992996922*^9, 3.8279099566563635`*^9}},
+ CellLabel->
+  "Out[246]=",ExpressionUUID->"6e811b1a-5e90-4a1f-9c31-dc331a1c42d9"]
 }, Open  ]]
 },
 WindowSize->{1029, 813},
-WindowMargins->{{-1339, Automatic}, {18, Automatic}},
+WindowMargins->{{Automatic, 386}, {-21, Automatic}},
 FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 12, 2020)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"c14821d6-4be3-4f39-9989-8f32653522a7"
@@ -232,9 +262,9 @@ Cell[3577, 111, 1302, 40, 67, "Output",ExpressionUUID->"953184ae-22bb-4eb7-8994-
 }, Open  ]],
 Cell[4894, 154, 203, 4, 28, "Input",ExpressionUUID->"f62a2e01-e37e-482d-bb46-7ce0f0201ff0"],
 Cell[CellGroupData[{
-Cell[5122, 162, 509, 14, 28, "Input",ExpressionUUID->"53b09bb5-b21a-452a-b3f0-6778020f7493"],
-Cell[5634, 178, 934, 17, 30, "Message",ExpressionUUID->"3911974b-49ae-4c4f-a48c-24c32b9cb092"],
-Cell[6571, 197, 264, 6, 53, "Output",ExpressionUUID->"ea77d904-80b5-45a7-a4ff-e4a20bbd8454"]
+Cell[5122, 162, 562, 16, 28, "Input",ExpressionUUID->"53b09bb5-b21a-452a-b3f0-6778020f7493"],
+Cell[5687, 180, 2302, 35, 59, "Message",ExpressionUUID->"ef1110b7-ea1a-478c-b1e4-24f3c536eb82"],
+Cell[7992, 217, 538, 16, 53, "Output",ExpressionUUID->"6e811b1a-5e90-4a1f-9c31-dc331a1c42d9"]
 }, Open  ]]
 }
 ]
