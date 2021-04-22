@@ -76,6 +76,7 @@
 
 \input{macros}
 \input{listings-style}
+\input{navigation-macros}
 
 \title[Matematické kyvadlo]{Navigace vzducholodi}
 
@@ -87,7 +88,7 @@
 \begin{document}
 
 \begin{abstract}
-Abstrakt
+Řešíme problém navržený \citep{prusa.tuma}
 \end{abstract}
 
 \maketitle
@@ -101,18 +102,276 @@ Abstrakt
 \section{Úvod}
 \label{sec:Úvod}
 
-Příliš žluťoučký kůň úpěl ďábelské ódy.
+Vzducholoď se pohybuje ve větrném poli $\vec{w}$ a má za cíl překonat vzdálenost z bodu A do bodu B. V tomto textu se budeme zabývat otázkou jak zvolit její trasu, aby dorazila do cíle v nejkratším možném čase. Točení kormidla vzducholodi budeme charakterizovat jejím směrem letu tedy funkcí $\beta (t)$. Můžeme se ptát, jak točit kormidlem tak, aby vzducholoď dorazila do cíle co nejdříve. 
 
-\begin{lstlisting}[language=Mathematica, caption=Konstanty]
-g = 9.81;
-l = 1;
-poc = 1;
-time = {t, 0, 10};
-\end{lstlisting}
+Trajektorii vzducholodi budeme popisovat v kartézských souřadnicích a to v rovině $(x,y)$, zanedbáme popis výšky. Vzducholoď se v bezvětří pohybuje rychlostí $\vec{V}$. Pro zjednodušení výpočtů uvažujme konstantní rychlost $\vec{V}$, stacionární pole $\vec{w}$ a cílový bod B jako počátek souřadnic (lze vždy zajistit vhodnou transformací). 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=15cm]{figures/airship.eps}
+  \caption{Nastínění uvažované situace.}
+  \label{Rplot1-2}
+\end{figure}
+
+Pro okamžitou rychlost vzducholodi platí:
+\begin{equation} 
+\label{rce1}
+\begin{split}
+\dd{x}{t} & = V \cos \beta(t) + u(x,y), \\
+\dd{y}{t} & = V \sin \beta(t) + v(x,y),
+\end{split}
+\end{equation}
+
+kde $
+\vec{x}(t)=\transpose{
+  \begin{bmatrix}
+    x(t) &
+    y(t)
+  \end{bmatrix}
+}
+$ je hledaná trajektorie, $\beta \in \langle 0, 2 \pi)$ je směr letu a $
+\vec{w}
+=
+\transpose{
+  \begin{bmatrix}
+    u &
+    v
+  \end{bmatrix}
+}
+$ je dané pole větru. Dále známe:
+\begin{subequations}
+  \label{eq:1}
+  \begin{align}
+    \label{eq:2}
+    \vec{x}(t_{A})& = A, \\
+    \label{eq:3}
+    \vec{x}(t_{B})& = B = \transpose{
+  \begin{bmatrix}
+    0 &
+    0
+  \end{bmatrix}
+},
+  \end{align}
+\end{subequations}
+kde $t_{A}$ je čas startu vzducholodi a $t_{B}$ je čas příletu\footnote{Při příletu vzducholoď nebude mít nulovou rychlost.}. 
+
+\section{Variační počet}
+\label{sec:Variační počet}
+
+Náš zájem se proto soustřeďuje na minimalizaci funkcionálu:
+\begin{equation}
+  \label{eq:8}
+  I(\beta, t_{B}) =_{\bydefinition} \int_{t_{A}}^{t_{B}}\, \diff t = t_{B} - t_{A},
+\end{equation}
+při splnění soustavy rovnic $\eqref{rce1}$, které kompaktněji přepišme jako:
+\begin{equation}
+  \label{eq:7}
+  \dd{\vec{x}}{t} = \vec{f}(\vec{x}, \beta).
+\end{equation}
+Chceme tedy minimalizovat cestovní čas a přípustné trajektorie musí splňovat $\eqref{eq:7}$. Při hledání extremály využijme koncept vázaných extrémů a Lagrangeových multiplikátorů $\vec{\lambda}$. Proto studujme funkcionál:
+\begin{equation}
+  \label{eq:9}
+  J(\beta, t_{B}) =_{\bydefinition}
+  \int_{t = t_{A}}^{t_{B}}
+  \left(
+    1
+    -
+    \vectordot{\greekvec{\lambda}}{\left(\dd{\vec{x}}{t} - \vec{f}(\vec{x}, \beta) \right)}
+  \right)
+  \, \diff t,
+\end{equation}
+kde funkce $\vec{\lambda}$ bude upřesněna později. Nyní hledejme G\^{a}teauxovu derivaci $J(\beta, t_{B})$:
+\begin{equation}
+\begin{split}
+  \label{eq:13}
+  \Diff J(\beta, t_{B}) [(\alpha, \tau)]
+  & =
+  _{\bydefinition}
+  \left.
+    \dd{}{\varepsilon}
+    J(\beta_{\navext} + \varepsilon \alpha, t_{\navend, \navext} + \varepsilon \tau)
+  \right|_{\varepsilon = 0}  \\
+  & =
+  _{\bydefinition}
+  \left.
+    \left[
+      \dd{}{\varepsilon}
+      \int_{t = t_{A}}^{t_{\navend, \navext} + \varepsilon \tau}
+      \left(
+        1
+        -
+        \vectordot{\greekvec{\lambda}}{\left(\dd{\vec{x}_{\varepsilon}}{t} - \vec{f}(\vec{x}_{\varepsilon}, \beta) \right)}
+      \right)
+      \, \diff t
+    \right]
+  \right|_{\varepsilon = 0}
+  ,
+\end{split}
+\end{equation}
+při variaci:
+\begin{subequations}
+  \label{eq:10}
+  \begin{align}
+    \label{eq:11}
+    \beta &= \beta_{\navext} + \varepsilon \alpha, \\
+    \label{eq:12}
+    t_{\navend} &= t_{\navend, \navext} + \varepsilon \tau,
+  \end{align}
+\end{subequations}
+kde $\vec{x}_{\epsilon}$ je korespondující trajektorie k $\beta$ a $t_{B}$. Přičemž stále platí:
+\begin{subequations}
+  \label{eq:010}
+  \begin{align}
+    \label{eq:020}
+    \vec{x}_{\epsilon}(t_{A})& = \vec{x}_{\navext}(t_{A})=A, \\
+    \label{eq:030}
+    \vec{x}_{\epsilon}(t_{\navend, \navext} + \varepsilon \tau) & =\vec{x}_{\navext}(t_{\navend, \navext})= B = \vec{0}.
+  \end{align}
+\end{subequations}
+Nejdříve upravme $\eqref{eq:13}$ pomocí integrace per partes na člen $\vectordot{\greekvec{\lambda}}{\dd{\vec{x}_{\varepsilon}}{t}}$, některé členy budou dle předchozího nulové a dostáváme:
+\begin{multline}
+  \label{eq:18}
+  \Diff J(\beta, t_{B}) [(\alpha, \tau)]
+  =
+  \left.
+    \left[
+      \dd{}{\varepsilon}
+      \int_{t = t_{\navstart}}^{t_{\navend, \navext}}
+      \left(
+        1
+        +
+        \vectordot{\dd{\greekvec{\lambda}}{t}}{\vec{x}_{\varepsilon}}
+        +
+        \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\varepsilon}, \beta)}
+      \right)
+      \, \diff t
+    \right]
+  \right|_{\varepsilon = 0}
+  +
+  \left.
+    \left[
+      \dd{}{\varepsilon}
+      \int_{t = t_{\navend, \navext}}^{t_{\navend, \navext} + \varepsilon \tau}
+      \left(
+        1
+        +
+        \vectordot{\dd{\greekvec{\lambda}}{t}}{\vec{x}_{\varepsilon}}
+        +
+        \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\varepsilon}, \beta)}
+      \right)
+      \, \diff t
+    \right]
+  \right|_{\varepsilon = 0}
+  \\
+  =
+    \left.
+    \left[
+      \dd{}{\varepsilon}
+      \int_{t = t_{\navstart}}^{t_{\navend, \navext}}
+      \left(
+        1
+        +
+        \vectordot{\dd{\greekvec{\lambda}}{t}}{\vec{x}_{\varepsilon}}
+        +
+        \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\varepsilon}, \beta)}
+      \right)
+      \, \diff t
+    \right]
+  \right|_{\varepsilon = 0}
+  +
+\left.
+    \left[
+        1
+        +
+        \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\navext}, \beta_{\navext})}
+    \right]
+  \right|_{t = t_{\navend, \navext}}
+  \tau.
+\end{multline}
+Podle \citep{prusa.tuma} použijeme geniální trik:
+$\vec{x}_{\varepsilon} \approx \vec{x}_{\navext} + \epsilon \vec{y} + \cdots$, kde zanedbáme členy vyššího řádu a kde $\vec{y}$ je funkce času. Tím dále můžeme upravit první člen v poslední rovnosti $\eqref{eq:18}$:
+\begin{align}
+    \left.
+    \left[
+      \dd{}{\varepsilon}
+      \int_{t = t_{\navstart}}^{t_{\navend, \navext}}
+      \left(
+        1
+        +
+        \vectordot{\dd{\greekvec{\lambda}}{t}}{\vec{x}_{\varepsilon}}
+        +
+        \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\varepsilon}, \beta)}
+      \right)
+      \, \diff t
+    \right]
+  \right|_{\varepsilon = 0} =  \int_{t = t_{\navstart}}^{t_{\navend, \navext}}
+  \left(
+    \vectordot{\left[ \dd{\greekvec{\lambda}}{t} + \transpose{\left. \pd{\vec{f}}{\vec{x}} \right|_{\vec{x} = \vec{x}_{\navext}, \beta = \beta_{\navext}}} \greekvec{\lambda} \right]}{\vec{y}}
+    +
+    \vectordot{\greekvec{\lambda}}
+    {
+      \left. \pd{\vec{f}}{\beta} \right|_{\vec{x} = \vec{x}_{\navext}, \beta = \beta_{\navext}} \alpha
+    }
+  \right)
+  \, \diff t.
+\end{align}
+Nyní můžeme přistoupit k vybraní $\vec{\lambda}$ takové, aby bylo splněno:
+\begin{align}
+  \label{eq:24}
+  \dd{\greekvec{\lambda}}{t} = - \transpose{\left. \pd{\vec{f}}{\vec{x}} \right|_{\vec{x} = \vec{x}_{\navext}, \beta = \beta_{\navext}}} \greekvec{\lambda}
+  .
+\end{align}
+Po dosazení dostáváme výsledný vztah pro G\^{a}teuxovu derivaci:
+\begin{equation}
+  \label{eq:25}
+  \Diff J(\beta, t_{B}) [(\alpha, \tau)]
+  =
+  \int_{t = t_{\navstart}}^{t_{\navend, \navext}}
+  \vectordot{\greekvec{\lambda}}
+  {
+    \left. \pd{\vec{f}}{\beta} \right|_{\vec{x} = \vec{x}_{\navext}, \beta = \beta_{\navext}} \alpha
+  }
+  \, \diff t
+  +
+  \left.
+    \left[
+        1
+        +
+        \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\navext}, \beta_{\navext})}
+    \right]
+  \right|_{t = t_{\navend, \navext}}
+  \tau =0
+  ,
+\end{equation}
+což musí platit pro libovolně $\alpha$ a $\tau$. Tímto dostáváme:
+\begin{subequations}
+  \label{eq:rce2}
+  \begin{align}
+    \label{eq:31}
+    \vectordot{\greekvec{\lambda}}
+    {
+    \pd{\vec{f}}{\beta}(\vec{x}_{\navext}, \beta_{\navext}) 
+    }
+    &=
+      0, \\
+    \label{eq:32}
+    \left.
+    \left[
+    1
+    +
+    \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\navext}, \beta_{\navext})}
+    \right]
+    \right|_{t = t_{\navend, \navext}}
+    &=
+      0,
+  \end{align}
+\end{subequations} 
+
+....
 
 \section{Závěr}
 \label{sec:Závěr}
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam sit amet magna in magna gravida vehicula. Nullam eget nisl. In rutrum. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Maecenas sollicitudin. Integer malesuada.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam sit amet magna in magna gravida vehicula. Nullam eget nisl. In rutrum. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Maecenas sollicitudin. Integer malesuada.\citep{prusa.tuma}
 
 
 
@@ -134,9 +393,25 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam sit amet magna 
 
 
 
-%\bibliographystyle{chicago}
-%\bibliographystyle{custom}
-%\bibliography{vit-prusa}
+
+
+
+
+
+
+
+%\begin{lstlisting}[language=Mathematica, caption=Konstanty]
+%g = 9.81;
+%l = 1;
+%poc = 1;
+%time = {t, 0, 10};
+%\end{lstlisting}
+
+
+
+
+\bibliographystyle{custom}
+\bibliography{ref}
 
 \addtocontents{toc}{\protect\end{multicols}} % workaround for table of contents in two columns in amsart documentclass
 \end{document}
