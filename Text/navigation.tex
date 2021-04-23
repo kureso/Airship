@@ -104,7 +104,7 @@
 
 Vzducholoď se pohybuje ve větrném poli $\vec{w}$ a má za cíl překonat vzdálenost z bodu A do bodu B. V tomto textu se budeme zabývat otázkou jak zvolit její trasu, aby dorazila do cíle v nejkratším možném čase. Točení kormidla vzducholodi budeme charakterizovat jejím směrem letu tedy funkcí $\beta (t)$. Můžeme se ptát, jak točit kormidlem tak, aby vzducholoď dorazila do cíle co nejdříve. 
 
-Trajektorii vzducholodi budeme popisovat v kartézských souřadnicích a to v rovině $(x,y)$, zanedbáme popis výšky. Vzducholoď se v bezvětří pohybuje rychlostí $\vec{V}$. Pro zjednodušení výpočtů uvažujme konstantní rychlost $\vec{V}$, stacionární pole $\vec{w}$ a cílový bod B jako počátek souřadnic (lze vždy zajistit vhodnou transformací). 
+Trajektorii vzducholodi budeme popisovat v kartézských souřadnicích a to v rovině $(x,y)$, zanedbáme popis výšky. Vzducholoď se v bezvětří pohybuje rychlostí $\vec{V}$. Pro zjednodušení výpočtů uvažujme konstantní rychlost $\vec{V}$, stacionární pole $\vec{w}$, cílový bod B jako počátek souřadnic (lze vždy zajistit vhodnou transformací). Dále zanedbáváme zpoždění reakce vzducholodě na stočení kormidla.
 
 \begin{figure}[h!]
   \centering
@@ -315,7 +315,7 @@ $\vec{x}_{\varepsilon} \approx \vec{x}_{\navext} + \epsilon \vec{y} + \cdots$, k
   \right)
   \, \diff t.
 \end{align}
-Nyní můžeme přistoupit k vybraní $\vec{\lambda}$ takové, aby bylo splněno:
+Nyní můžeme přistoupit k vybrání $\vec{\lambda}$ takové, aby bylo splněno:
 \begin{align}
   \label{eq:24}
   \dd{\greekvec{\lambda}}{t} = - \transpose{\left. \pd{\vec{f}}{\vec{x}} \right|_{\vec{x} = \vec{x}_{\navext}, \beta = \beta_{\navext}}} \greekvec{\lambda}
@@ -343,7 +343,7 @@ Po dosazení dostáváme výsledný vztah pro G\^{a}teuxovu derivaci:
   \tau =0
   ,
 \end{equation}
-což musí platit pro libovolně $\alpha$ a $\tau$. Tímto dostáváme:
+což musí platit pro libovolné $\alpha$ a $\tau$. Tímto dostáváme:
 \begin{subequations}
   \label{eq:rce2}
   \begin{align}
@@ -363,11 +363,150 @@ což musí platit pro libovolně $\alpha$ a $\tau$. Tímto dostáváme:
     \right]
     \right|_{t = t_{\navend, \navext}}
     &=
-      0,
+      0.
   \end{align}
 \end{subequations} 
+Pokusme se vypočítat časovou derivaci funkce $1 +  \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\navext}, \beta_{\navext})}$, kam dosadíme z rovnic $\eqref{eq:7},\eqref{eq:31}$ a $\eqref{eq:24}$:
+\begin{align}
+\dd{}{t}
+  \left(
+    1 +  \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\navext}, \beta_{\navext})}
+  \right) = 0,
+\end{align}
+potom funkce $1 +  \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\navext}, \beta_{\navext})}$ se musí rovnat konstantě po celý časový interval letu, ale z rovnice $\eqref{eq:32}$ vyplývá, že je rovna nule pro $t \in (t_{A},t_{B})$. Získáváme systém lineárních algebraických rovnic pro $\vec{\lambda}$:
+\begin{subequations}
+  \label{eq:40}
+  \begin{align}
+    \label{eq:41}
+    1
+    +
+    \vectordot{\greekvec{\lambda}}{\vec{f}(\vec{x}_{\navext}, \beta_{\navext})}
+    &=
+      0
+      ,
+    \\
+    \label{eq:42}
+    \vectordot{\greekvec{\lambda}}
+    {
+    \pd{\vec{f}}{\beta}(\vec{x}_{\navext}, \beta_{\navext}) 
+    }
+    &=
+      0.
+  \end{align}
+\end{subequations}
+Řešením této soustavy pro naší pravou stranu $\eqref{rce1}$ můžeme získat explicitní vzorec pro $\vec{\lambda}$:
+\begin{equation}
+  \label{eq:45}
+  \begin{bmatrix}
+    \lambda_x \\
+    \lambda_y
+  \end{bmatrix}
+  =
+  \frac{1}{V +  u(x_{\navext}, y_{\navext}) \cos \beta_{\navext} +  v(x_{\navext}, y_{\navext}) \sin \beta_{\navext}}
+  \begin{bmatrix}
+    \cos \beta_{\navext} \\
+    \sin \beta_{\navext}
+  \end{bmatrix}
+  .
+\end{equation}
+Odkud lze odvodit Zermelova navigační rovnice\footnote{Ernst Zermelo - přednáška v Praze 1931} s použitím rovnice $\eqref{eq:24}$ a užitím skalárního součinu obou stran rovnice s vektorem $
+  \transpose{
+  \begin{bmatrix}
+    -\sin \beta_{\navext} &
+     \cos \beta_{\navext}
+  \end{bmatrix}
+  }
+$. Na otázku jak se vyvíjí optimální směr letu vzducholodě $\beta_{\navext}$, nám právě odpovídá Zermelova navigační rovnice:
+\begin{equation}
+  \label{eq:50}
+  \dd{\beta_\navext}{t}
+  =
+  \pd{v}{x}(x_{\navext}, y_{\navext})
+  \sin^2 \beta_\navext
+  +
+  \left(
+    \pd{u}{x}(x_{\navext}, y_{\navext})
+    -
+    \pd{v}{y}(x_{\navext}, y_{\navext})
+  \right)
+  \sin \beta_\navext
+  \cos \beta_\navext
+  -
+  \pd{u}{y}(x_{\navext}, y_{\navext})
+  \cos^2 \beta_\navext
+  .
+\end{equation}
+Tímto jsme odvodili všechny evoluční rovnice našeho problému.
 
-....
+\section{Řešení}
+\label{sec:Řešení}
+
+Máme zadané rychlostní pole větru $\vec{w}$, známe počáteční bod A a koncový bod B letu:
+\begin{align}
+\vec{w}
+& =
+\begin{bmatrix}
+    u(x,y) \\
+    v(x,y)
+  \end{bmatrix}
+,\\
+A
+& =
+  \begin{bmatrix}
+    A_{1} \\
+    A_{2} \end{bmatrix}
+,\\
+B
+& =
+  \begin{bmatrix}
+    0 \\
+    0 \end{bmatrix}
+.
+\end{align}
+Optimální trajektorii $\vec{x}_{\navext}$ a nejkratší možný čas letu $t_{B}-t_{A}$ hledáme řešením diferenciálních rovnic:
+\begin{subequations}
+  \label{eq:51}
+  \begin{align}
+    \label{eq:52}
+    \dd{x_{\navext}}{t} &= V \cos \beta_{\navext} + u(x_{\navext}, y_{\navext}),  \\
+    \label{eq:53}
+    \dd{y_{\navext}}{t} &= V \sin \beta_{\navext} + v(x_{\navext}, y_{\navext}),  \\
+    \label{eq:54}
+      \dd{\beta_\navext}{t}
+                              &=
+  \pd{v}{x}(x_{\navext}, y_{\navext})
+  \sin^2 \beta_\navext
+  +
+  \left(
+    \pd{u}{x}(x_{\navext}, y_{\navext})
+    -
+    \pd{v}{y}(x_{\navext}, y_{\navext})
+  \right)
+  \sin \beta_\navext
+  \cos \beta_\navext
+  -
+  \pd{u}{y}(x_{\navext}, y_{\navext})
+  \cos^2 \beta_\navext
+    ,
+  \end{align}
+\end{subequations}
+pro neznámé $\vec{x}_{\navext}=
+  \transpose{
+  \begin{bmatrix}
+    x_{\navext} &
+    y_{\navext}
+  \end{bmatrix}
+  }
+$ a $\beta_{\navext}$ při splnění podmínek:
+\begin{align}
+  \vec{x}_{\navext}(t_{A}) & = A ,\\
+  \label{rce3}
+  \vec{x}_{\navext}(t_{\navend} ; \beta_{\navext, 0}) & = \vec{0},
+\end{align}
+kde $\beta_{\navext}(t_{A})=\beta_{\navext, 0}$ je počáteční natočení vzducholodě. Neboli abychom mohli řešit soustavu diferenciálních rovnic $\eqref{eq:51}$, potřebujeme navíc kromě znalosti $\eqref{eq:1}$ ještě přidat další počáteční podmínku $\beta_{\navext, 0}$, pro kterou platí pouze rovnost $\eqref{rce3}$.
+
+Jak si ukážeme v další sekci, pro vhodně zadané rychlostní pole větru lze napsat soustavu rovnic mezi $\vec{x}_{\navext}(t_{A})$ a $ \beta_{\navext, 0}$.
+
 
 \section{Závěr}
 \label{sec:Závěr}
