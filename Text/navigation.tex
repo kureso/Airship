@@ -517,23 +517,21 @@ z toho:
 \begin{align}
 \beta_\navext =\beta_{\navext,0},
 \end{align}
-čo znamená, že vzducholoď bude natočená priamo na cieľ. \\
-Uvažujme teraz prípad lineárnej závislosti veterného poľa na polohe. V tomto prípade bude pole charakterizované funkciami:
+čo znamená, že vzducholoď bude natočená priamo na cieľ.
 
+Uvažujme teraz prípad lineárnej závislosti veterného poľa na polohe. V tomto prípade bude pole charakterizované funkciami:
 \begin{align}
-u &= -\frac{V}{h}y\\
+u &= -\frac{V}{h}y ,\\
 v &= 0.
 \end{align}
 
 \begin{figure}
-\includegraphics[scale=0.7]{Graf.png}
+\includegraphics[scale=0.7]{figures/Graf.png}
+\caption{Rychlostní pole větru.}
+\label{pole}
 \end{figure}
 
-
-
-
 Pre tento špeciálny prípad veterného poľa sa systém diferenciálnych rovíc zjednoduší na:
-
 \begin{subequations}
  \label{eq:55}
  \begin{align}
@@ -544,24 +542,20 @@ Pre tento špeciálny prípad veterného poľa sa systém diferenciálnych roví
   \label{58}
   \dd{\beta_\navext}{t}
                               &=
-  \frac{V}{h}  \cos^2 \beta_\navext                            
+  \frac{V}{h}  \cos^2 \beta_\navext.                         
  \end{align}
 
 \end{subequations}
-
 Poslednú rovnicu vieme vyriešiť separáciou premenných:
 \begin{align}
  \label{eq:59}
 \tan \beta_\navext - \tan \beta_{\navext, B} &= \frac{V}{h}(t-t_{B}),
 \end{align}
 kde sme použili značenie  $ \left. \beta_{\navext, B}=_{\bydefinition} \beta_{\navext} \right|_{t=t_{\navend, \navext}}   $.  Nakoľko je funkcia $\beta_\navext$ rasttúca funkcia času, môžeme zmeniť premenné a prepísať rovnicu \ref{57} ako $\dd{y_{\navext}}{\beta_\navext}\dd{\beta_\navext}{t} = V \sin \beta_\navext$, z čoho dostávame:
-
 \begin{align}
 \dd{y_\navext}{\beta_\navext}=h\frac{\sin \beta_\navext}{\cos ^2 \beta_\navext}.
 \end{align}
-
 Z toho jednoducho:
-
 \begin{align}
  \label{eq:60}
 y_\navext(\beta_\navext)=h\left(\frac{1}{\cos \beta_\navext}-\frac{1}{\cos \beta_{\navext,B}}\right).
@@ -569,10 +563,8 @@ y_\navext(\beta_\navext)=h\left(\frac{1}{\cos \beta_\navext}-\frac{1}{\cos \beta
 Potrebujeme $y_\navext(\beta_{\navext,B})=0$. Nakoniec môžeme uskutočniť rovnakú zmenu premenných v \ref{eq:56}, čo dáva:
 \begin{align}
 \dd{x_\navext}{\beta_\navext}=h\left(\frac{1}{\cos \beta_\navext}-\frac{1}{\cos^3 \beta_\navext}+\frac{1}{\cos^2 \beta_\navext \cos \beta_{\navext,B}}\right).
-\end{align}
- 
+\end{align} 
 Riešenie v tvare:
-
 \begin{align}
  \label{eq:61}
 x_\navext(\beta_\navext)=\frac{1}{2}h(-\arctanh \sin \beta_{\navext,B} + \arctanh \sin \beta_\navext - \sec \beta_{\navext,B} \tan \beta_{\navext,B} + 2\sec \beta_{\navext,B} \tan \beta_\navext - \sec \beta_\navext \tan \beta_\navext),
@@ -585,7 +577,7 @@ potrebujeme aby platilo $x_\navext(\beta_{\navext,end})=0$. Teraz môžeme použ
 \begin{bmatrix}
     \frac{1}{2}h(-\arctanh \sin 	       \beta_{\navext,B} + \arctanh \sin \beta_\navext - \sec \beta_{\navext,B} \tan \beta_{\navext,B} + 2\sec \beta_{\navext,B} \tan \beta_\navext - \sec \beta_\navext \tan \beta_\navext) \\
     h\left(\frac{1}{\cos \beta_\navext}-\frac{1}{\cos \beta_{\navext,B}}\right)
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{align}
 Nakoľko poznáme $\vec{x}(t_{A})$, dostávame teda z \ref{eq:62} sústavu dvoch nelineárnych algebraických rovníc pre dve neznáme $\beta_{\navext,end}$ a $\beta_\navext$. Akonáhle nájdeme tieto dve hodnoty, môžeme z rovnice \ref{eq:59} vyjadriť konečný čas.\\
 Konečne môžeme konštatovať, že pre výpočet úlohy navigácie lode, potrebujeme pre dané $V$, $h$ a 
@@ -610,7 +602,7 @@ y(t_{A})
 \end{align}
 a dostaneme hodnoty $\beta_\navext$ a $\beta_{\navext,B}$. Z rovnice 
 \begin{align}
-\tan \beta_{\navext,A} - \tan \beta_{\navext, B} &= \frac{V}{h}(t_{A}-t_{B})
+\tan \beta_{\navext,A} - \tan \beta_{\navext, B} &= \frac{V}{h}(t_{A}-t_{B}),
 \end{align}
 nájdeme konečný čas $t_{B}$. Optimálna trajektória je daná ako riešenie systému diferenciálnych rovníc prvého stupňa:
 \begin{subequations}
@@ -627,10 +619,7 @@ nájdeme konečný čas $t_{B}$. Optimálna trajektória je daná ako riešenie 
  \end{align}
 
 \end{subequations}
-
-
 ktoré sa riešia v časovom intervale $t \in (t_{A}, t_{B})$, s ohľadom na počiatočné podmienky:
-
 \begin{subequations}
  \label{eq:68}
  \begin{align}
@@ -639,11 +628,9 @@ ktoré sa riešia v časovom intervale $t \in (t_{A}, t_{B})$, s ohľadom na po�
   \label{eq:70}
   \left. y_\navext \right|_{t=t_{A}} &= y_{A},   \\
   \label{eq:71}
-  \left. \beta_\navext \right|_{t=t_{A}} &= \beta_{\navext, A} 
+  \left. \beta_\navext \right|_{t=t_{A}} &= \beta_{\navext, A}. 
  \end{align}
-
 \end{subequations}
-
 Problém \ref{eq:63} až \ref{eq:68} sa dá vyriešiť numerickými metódami.
 
 
