@@ -551,7 +551,7 @@ Poslednú rovnicu vieme vyriešiť separáciou premenných:
  \label{eq:59}
 \tan \beta_\navext - \tan \beta_{\navext, B} &= \frac{V}{h}(t-t_{B}),
 \end{align}
-kde sme použili značenie  $ \left. \beta_{\navext, B}=_{\bydefinition} \beta_{\navext} \right|_{t=t_{\navend, \navext}}   $.  Nakoľko je funkcia $\beta_\navext$ rasttúca funkcia času, môžeme zmeniť premenné a prepísať rovnicu \ref{57} ako $\dd{y_{\navext}}{\beta_\navext}\dd{\beta_\navext}{t} = V \sin \beta_\navext$, z čoho dostávame:
+kde sme použili značenie  $ \left. \beta_{\navext, B}=_{\bydefinition} \beta_{\navext} \right|_{t=t_{\navend, \navext}}   $.  Nakoľko je funkcia $\beta_\navext$ rastúca funkcia času, môžeme zmeniť premenné a prepísať rovnicu \ref{57} ako $\dd{y_{\navext}}{\beta_\navext}\dd{\beta_\navext}{t} = V \sin \beta_\navext$, z čoho dostávame:
 \begin{align}
 \dd{y_\navext}{\beta_\navext}=h\frac{\sin \beta_\navext}{\cos ^2 \beta_\navext}.
 \end{align}
@@ -579,9 +579,10 @@ potrebujeme aby platilo $x_\navext(\beta_{\navext,end})=0$. Teraz môžeme použ
     h\left(\frac{1}{\cos \beta_\navext}-\frac{1}{\cos \beta_{\navext,B}}\right)
   \end{bmatrix}.
 \end{align}
-Nakoľko poznáme $\vec{x}(t_{A})$, dostávame teda z \ref{eq:62} sústavu dvoch nelineárnych algebraických rovníc pre dve neznáme $\beta_{\navext,end}$ a $\beta_\navext$. Akonáhle nájdeme tieto dve hodnoty, môžeme z rovnice \ref{eq:59} vyjadriť konečný čas.\\
+Nakoľko poznáme $\vec{x}(t_{A})$, dostávame teda z \ref{eq:62} sústavu dvoch nelineárnych algebraických rovníc pre dve neznáme $\beta_{\navext,end}$ a $\beta_\navext$. Akonáhle nájdeme tieto dve hodnoty, môžeme z rovnice \ref{eq:59} vyjadriť konečný čas.
+
 Konečne môžeme konštatovať, že pre výpočet úlohy navigácie lode, potrebujeme pre dané $V$, $h$ a 
-$\vec{x}(t_{A})=_{\bydefinition} \transpose {\begin{bmatrix}
+$\vec{x}(t_{A})= \transpose {\begin{bmatrix}
     x(t_{A}) &
     y(t_{A})
   \end{bmatrix}
@@ -617,7 +618,6 @@ nájdeme konečný čas $t_{B}$. Optimálna trajektória je daná ako riešenie 
                               &=
   \frac{V}{h}  \cos^2 \beta_\navext, 
  \end{align}
-
 \end{subequations}
 ktoré sa riešia v časovom intervale $t \in (t_{A}, t_{B})$, s ohľadom na počiatočné podmienky:
 \begin{subequations}
