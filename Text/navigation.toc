@@ -1,0 +1,8 @@
+\babel@toc {czech}{}
+\begin {multicols}{2}
+\contentsline {section}{\tocsection {}{1}{Úvod}}{1}{section.1}%
+\contentsline {section}{\tocsection {}{2}{Variační počet}}{1}{section.2}%
+\contentsline {section}{\tocsection {}{3}{Řešení}}{3}{section.3}%
+\contentsline {section}{\tocsection {}{4}{Jednoduché veterné pole}}{3}{section.4}%
+\contentsline {section}{\tocsection {}{5}{Závěr}}{5}{section.5}%
+\end {multicols}
