@@ -633,17 +633,76 @@ ktoré sa riešia v časovom intervale $t \in (t_{A}, t_{B})$, s ohľadom na po�
 \end{subequations}
 Problém \ref{eq:63} až \ref{eq:68} sa dá vyriešiť numerickými metódami.
 
+\section{Numerické řešení}
+\label{sec:NumJVP}
+Jak jsme už naznačili, naše jednoduché větrné pole se dá vyřešit numericky\footnote{Veškeré výpočty jsou provedeny v programu Wolfram Mathematica, verze 12.2.}. Rozhodli jsme se pracovat s následujícími hodnotami\footnote{Naše hodnoty mají následující jednotky: $V$ a $"h1-h3"$ - \si{km.h^{-1}}, $x1$ a $x2$ - \si{km}.}:
+\begin{lstlisting}[language=Mathematica, caption=Hodnoty]
+V = 10;
+h1 = 1;
+h2 = 10;
+h3 = 0.1;
+x1 = "in. condition X";
+x2 = "in. condition Y"
+\end{lstlisting}
 
-\section{Závěr}
-\label{sec:Závěr}
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam sit amet magna in magna gravida vehicula. Nullam eget nisl. In rutrum. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Maecenas sollicitudin. Integer malesuada.\citep{prusa.tuma}
+Pro rychlost vzducholodě $V$ jsme si brali jen jednu hodnotu. Při našich výpočtech se ukázalo, že různé hodnoty $V$ nemají vliv na trajektorii, takže ani na startovní úhel $\beta_{ext,A}$. Ovlivněna je jen doba letu.
 
+Nazveme x-ovou část vektoru \eqref{eq:63} $X1$ a y-ovou část stejného vektoru $X2$. Za $x(t_{A})$ dáme $x1$ a za $y(t_{A})$ dáme $x2$. Získáme dvě rovnice: $X1=x1$ a $X2=x2$. V těchto rovnicích se nachází hodnota $h$, za kterou postupně dosazujeme hodnoty $"h1-h3"$. Pojďme vyřešit tuto soustavu nelineárních algebraických rovnic.
 
+Pro numerické řešení použijeme metodu $FindRoot$. 
+ 
+\begin{lstlisting}[language=Mathematica, caption=Metoda řešení,mathescape]
+res = FindRoot[{X1 == x1, X2 == x2}, {{B1, "0-2$\pi$"}, {B2, "0-2$\pi$"}}]
+\end{lstlisting}
 
+Metoda $FindRoot$ byla jediná, která v našich výpočtech fungovala. Bohužel je v tomto případě ne až tak praktická, kvůli dlouhému hledání nejvhodnějších parametrů $B1$ a $B2$.
 
+Řešení \eqref{eq:63} můžeme pak použijeme k výpočtu času, za který se dostane vzducholoď z bodu A do bodu B.
 
+\begin{lstlisting}[language=Mathematica, caption=Výpočet času,mathescape]
+$\beta_{ext,A}$ = B1 /.res;
+$\beta_{ext,B}$ = B2 /.res;
+time = -(h/V)(Tan[$\beta_{ext,A}$] - Tan[$\beta_{ext,B}$])
+\end{lstlisting}
 
+Nakonec si vykreslíme trajektorie.
+\begin{lstlisting}[language=Mathematica, caption=Vykreslení trajektorie,mathescape]
+rce = {x'[t] == V*Cos[$\beta$[t]] - (V/"h1-h3")y[t];
+y'[t] == V*Sin[$\beta$[t]];
+$\beta$'[t] == (V/"h1-h3")(Cos[$\beta$[t]])^2};
 
+sol = NDSolve[Join[rce, {x[0] == x1, y[0] == x2, $\beta$[0] == $\beta_{ext,A}$], {x, y, $\beta$},{t, 0, 3600}];
+
+ParametricPlot[Table[{x[t], y[t]} /. sol], {t, 0, time}, AxesLabel -> {x, y}, PlotRange -> All]
+\end{lstlisting}
+\subsection{Osa X}
+\label{sec: OsaX}
+\begin{figure}
+\includegraphics[scale=0.7]{figures/OsaX1.pdf}
+\caption{Trajektorie}
+\label{Xtraj}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.7]{figures/OsaX2.pdf}
+\caption{Trajektorie pro h=1}
+\label{Xtraj1}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.7]{figures/OsaX3.pdf}
+\caption{Trajektorie pro h=10}
+\label{Xtraj10}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.7]{figures/OsaX4.pdf}
+\caption{Trajektorie pro h=0.1}
+\label{Xtraj0.1}
+\end{figure}
+
+\subsection{Osa Y}
+\label{sec: OsaX}
+
+\subsection{Kvadranty}
+\label{sec: Kvad}
 
 
 
