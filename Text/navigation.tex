@@ -17,8 +17,9 @@
 \usepackage[utf8]{inputenc}
 
 % GRAPHICS
-\usepackage{subfig}
 \usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{subfig}
 
 % HYPERTEXT, SOURCE CODE SPECIALS
 \usepackage[unicode]{hyperref}
@@ -59,6 +60,7 @@
 \usepackage{dcolumn}
 \usepackage{tabularx}
 
+
 % SOURCE CODE LISTINGS
 \usepackage{listings}
 %\usepackage{minted}
@@ -88,7 +90,7 @@
 \begin{document}
 
 \begin{abstract}
-Řešíme problém navržený \citep{prusa.tuma}
+V tomto textu se pokusíme odpovědět na otázku, kudy má letět vzducholoď ve stacionárním větrném poli, aby do cíle doletěla v nejkratším možném čase. Teoreticky odvozené závěry pak budeme aplikovat na jednoduché rychlostní pole větru, kde trajektorie z různých bodů a časy letu numericky dořešíme.
 \end{abstract}
 
 \maketitle
@@ -655,7 +657,7 @@ Pro numerické řešení použijeme metodu $FindRoot$.
 res = FindRoot[{X1 == x1, X2 == x2}, {{B1, "0-2$\pi$"}, {B2, "0-2$\pi$"}}]
 \end{lstlisting}
 
-Metoda $FindRoot$ byla jediná, která v našich výpočtech fungovala. Bohužel je v tomto případě ne až tak praktická, kvůli dlouhému hledání nejvhodnějších parametrů $B1$ a $B2$.
+Metoda \texttt{FindRoot} byla jediná, která v našich výpočtech fungovala. Bohužel je v tomto případě ne až tak praktická, kvůli dlouhému hledání nejvhodnějších parametrů $B1$ a $B2$.
 
 Řešení \eqref{eq:63} můžeme pak použijeme k výpočtu času, za který se dostane vzducholoď z bodu A do bodu B.
 
@@ -675,101 +677,147 @@ sol = NDSolve[Join[rce, {x[0] == x1, y[0] == x2, $\beta$[0] == $\beta_{ext,A}$],
 
 ParametricPlot[Table[{x[t], y[t]} /. sol], {t, 0, time}, AxesLabel -> {x, y}, PlotRange -> All]
 \end{lstlisting}
+
+
 \subsection{Osa X}
 \label{sec: OsaX}
 
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaX2.pdf}
-\caption{Trajektorie, start osa X, h = 1}
-\label{Xtraj1}
-\end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaX3.pdf}
-\caption{Trajektorie, start osa X, h = 10}
-\label{Xtraj10}
-\end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaX4.pdf}
-\caption{Trajektorie, start osa X, h = 0.1}
-\label{Xtraj0.1}
-\end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaX1.pdf}
-\caption{Trajektorie, start osa X}
-\label{Xtraj}
-\end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaX - tab. čas.pdf}
-\caption{Tabulka - doba letu (hodiny)}
-\label{TabX1}
-\end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaX - tab. beta.pdf}
-\caption{Tabulka - startovní úhel (radiány)}
-\label{TabX2}
-\end{figure}
-Začneme s velmi pěkným případem - start z osy X.
+\begin{wrapfigure}{r}{.55\textwidth}
+    \begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=10cm]{figures/OsaX2.pdf}
+    \caption{Trajektorie, start osa $x$, $h$ = 1}
+    \label{Xtraj1}
+    \includegraphics[width=10cm]{figures/OsaX3.pdf}
+    \caption{Trajektorie, start osa $x$, $h$ = 10}
+    \label{Xtraj10}
+    \includegraphics[width=10cm]{figures/OsaX4.pdf}
+    \caption{Trajektorie, start osa $x$, $h$ = 0.1}
+    \label{Xtraj0.1}
+    \includegraphics[width=10cm]{figures/OsaX1.pdf}
+    \caption{Trajektorie, start osa $x$}
+    \label{Xtraj}
+\end{minipage}
+\end{wrapfigure}
+
+Začneme s případem - start z osy $x$.
 
 Startujeme tak, že vplujeme do větrného pole z bezvětří a pomalu/rychle se necháme unášet k našemu cíli. Tento případ je nejintuitivnější. Zhruba si dokážeme představit trajektorii, podél které se vzducholoď pohybuje.
 
-Pro lepší představu se můžeme kouknout na obrázky \eqref{Xtraj1}, \eqref{Xtraj10} a \eqref{Xtraj0.1}, kde vykreslujeme trajektorie pro různé hodnoty $h$. Pro porovnání těchto trajektorií se můžeme kouknout na obrázek \eqref{Xtraj}. V tabulce \eqref{TabX1} máme délku doby letu v hodinách a v tabulce \eqref{TabX2} máme startovní úhel v radiánech.
+Pro lepší představu se můžeme podívat na obrázky \eqref{Xtraj1}, \eqref{Xtraj10} a \eqref{Xtraj0.1}, kde vykreslujeme trajektorie pro různé hodnoty $h$. Pro porovnání těchto trajektorií se můžeme kouknout na obrázek \eqref{Xtraj}. V tabulce \eqref{TabX1} máme délku doby letu v hodinách a v tabulce \eqref{TabX2} máme startovní úhel v radiánech.
+
 \subsection{Osa Y}
 \label{sec: OsaY}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaY1.pdf}
-\caption{Trajektorie, start osa Y, h = 1 (nečárkované), h = 10 (čárkované)}
-\label{Ytraj}
-\end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaY4.pdf}
-\caption{Trajektorie, start osa Y, h = 0.1}
-\label{Ytraj0.1}
-\end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaY - tab. čas.pdf}
-\caption{Tabulka - doba letu (hodiny)}
-\label{TabY1}
-\end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/OsaY - tab. beta.pdf}
-\caption{Tabulka - startovní úhel (radiány)}
-\label{TabY2}
-\end{figure}
-Koukneme se na start z osy Y.
 
-Tento případ začíná být už zajímavější. Pro velká $h$ a malá $Y$ je trajektorie podobná trajektorii, která začíná z osy X. Na obrázku \eqref{Ytraj} lze pozorovat, že čím je $Y$ dále od počátku, tak se trajektorie protahuje. Toto samé platí, když hodnotu $h$ snižujeme, což lze pozorovat na obrázku \eqref{Ytraj0.1}. V tabulkách \eqref{TabY1} a \eqref{TabY2} máme časy a startovní úhly pro různé pozice. Když porovnáme časy, které jsem získali při studování startů z osy X a osy Y, můžeme si všimnout, že jsme zpravidla rychleji v cíli, když startujeme z osy X. 
+Koukneme se na start z osy $y$.
+
+Tento případ začíná být už zajímavější. Pro velká $h$ a malá $y$ je trajektorie podobná trajektorii, která začíná z osy $x$. Na obrázku \eqref{Ytraj} lze pozorovat, že čím je $y$ dále od počátku, tak se trajektorie protahuje. Toto samé platí, když hodnotu $h$ snižujeme, což lze pozorovat na obrázku \eqref{Ytraj0.1}. V tabulkách \eqref{TabY1} a \eqref{TabY2} máme časy a startovní úhly pro různé pozice. Když porovnáme časy, které jsem získali při studování startů z osy $x$ a osy $y$, můžeme si všimnout, že jsme zpravidla rychleji v cíli, když startujeme z osy $x$. 
 \subsection{Kvadranty}
 \label{sec: Kvad}
 Zamíříme k obecnějšímu případu - start z kvadrantů.
 
-Vybrali jsme jen tři různé počáteční podmínky ze dvou kvadrantů (1. a 2.). Proč jen ze dvou kvadrantů? Jak jsme mohli vypozorovat ze startů z os X a Y, tak trajektorie jsou středově souměrná podle počátku (pokud je i jejich počáteční startovní bod středově souměrný podle počátku)\footnote{Tato vlastnost plyne z velmi pěkné symetrie větrného pole - je také středově souměrné podle počátku.}, takže není nutné studovat chování v 3. a 4. kvadrantu.
+Vybrali jsme jen tři různé počáteční podmínky ze dvou kvadrantů (1. a 2.). Proč jen ze dvou kvadrantů? Jak jsme mohli vypozorovat ze startů z os $x$ a $y$, tak trajektorie jsou středově souměrná podle počátku (pokud je i jejich počáteční startovní bod středově souměrný podle počátku)\footnote{Tato vlastnost plyne ze symetrie větrného pole - je také středově souměrné podle počátku.}, takže není nutné studovat chování v 3. a 4. kvadrantu.
 
 Na obrázku \eqref{Ktraj1} můžeme pozorovat, jak se mění tvary trajektorií v závislosti na počátečních podmínkách. Na obrázku \eqref{Ktraj10} lze vidět, že když zvětšíme $h$, tak trajektorie budou mít tendenci mířit přímo do cíle. V tabulkách \eqref{TabK1} a \eqref{TabK2} uvádíme zase dobu letu a startovní úhel.
-\begin{figure}
-\includegraphics[scale=0.7]{figures/Kvad2.pdf}
-\caption{Trajektorie, start v kvadrantu, h = 1}
-\label{Ktraj1}
+
+
+\begin{figure}[h]
+  \centering
+  \subfloat[Doba letu v hodinách]{
+  \label{TabX1}
+  \includegraphics[scale=0.7]{figures/OsaX - tab. čas.pdf}
+  }
+  \qquad
+  \subfloat[Startovní úhel $\beta_{\navext}(t_{A})$  v radiánech]{
+  \label{TabX2}
+  \includegraphics[scale=0.7]{figures/OsaX - tab. beta.pdf}
+  }
+\caption{Osa $x$}
 \end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/Kvad3.pdf}
-\caption{Trajektorie, start v kvadrantu, h = 10}
-\label{Ktraj10}
+
+\begin{figure}[ht]
+  \centering
+  \subfloat[$h$ = 1 (nečárkované), $h$ = 10 (čárkované)]{
+  \label{Ytraj}
+  \includegraphics[scale=0.65]{figures/OsaY1.pdf}
+  }
+  \qquad
+  \subfloat[$h$ = 0.1]{
+  \label{Ytraj0.1}
+  \includegraphics[scale=0.65]{figures/OsaY4.pdf}
+  }
+  \qquad
+  \subfloat[Doba letu v hodinách]{
+  \label{TabY1}
+  \includegraphics[scale=0.6]{figures/OsaY - tab. čas.pdf}
+  }
+  \qquad
+  \subfloat[Startovní úhel $\beta_{\navext}(t_{A})$  v radiánech]{
+  \label{TabY2}
+  \includegraphics[scale=0.6]{figures/OsaY - tab. beta.pdf}
+  }
+\caption{Osa $y$}
 \end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/Kvad1.pdf}
-\caption{Trajektorie, start v kvadrantu}
-\label{Ktraj}
+
+\begin{figure}[ht]
+  \centering
+  \subfloat[$h$ = 1]{
+  \label{Ktraj1}
+  \includegraphics[scale=0.65]{figures/Kvad2.pdf}
+  }
+  \qquad
+  \subfloat[$h$ = 10]{
+  \label{Ktraj10}
+  \includegraphics[scale=0.65]{figures/Kvad3.pdf}
+  }
+  \qquad
+  \subfloat[Trajektorie, startů v kvadrantech]{
+  \label{Ktraj}
+  \includegraphics[scale=0.9]{figures/Kvad1.pdf}
+  }
+  \qquad
+  \subfloat[Doba letu v hodinách]{
+  \label{TabK1}
+  \includegraphics[scale=0.6]{figures/Kvad - tab. čas.pdf}
+  }
+  \qquad
+  \subfloat[Startovní úhel $\beta_{\navext}(t_{A})$  v radiánech]{
+  \label{TabK2}
+  \includegraphics[scale=0.6]{figures/Kvad - tab. beta.pdf}
+  }
+\caption{Kvadranty}
 \end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/Kvad - tab. čas.pdf}
-\caption{Tabulka - doba letu (hodiny)}
-\label{TabK1}
-\end{figure}
-\begin{figure}
-\includegraphics[scale=0.7]{figures/Kvad - tab. beta.pdf}
-\caption{Tabulka - startovní úhel (radiány)}
-\label{TabK2}
-\end{figure}
+
+
+%\begin{figure}
+%\includegraphics[scale=0.7]{figures/Kvad2.pdf}
+%\caption{Trajektorie, start v kvadrantu, $h$ = 1}
+%\label{Ktraj1}
+%\end{figure}
+
+%\begin{figure}
+%\includegraphics[scale=0.7]{figures/Kvad3.pdf}
+%\caption{Trajektorie, start v kvadrantu, $h$ = 10}
+%\label{Ktraj10}
+%\end{figure}
+
+%\begin{figure}
+%\includegraphics[scale=0.7]{figures/Kvad1.pdf}
+%\caption{Trajektorie, start v kvadrantu}
+%\label{Ktraj}
+%\end{figure}
+
+%\begin{figure}
+%\includegraphics[scale=0.7]{figures/Kvad - tab. čas.pdf}
+%\caption{Tabulka - doba letu (hodiny)}
+%\label{TabK1}
+%\end{figure}
+%
+%\begin{figure}
+%\includegraphics[scale=0.7]{figures/Kvad - tab. beta.pdf}
+%\caption{Tabulka - startovní úhel (radiány)}
+%\label{TabK2}
+%\end{figure}
 
 
 
