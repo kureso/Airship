@@ -700,7 +700,7 @@ ParametricPlot[Table[{x[t], y[t]} /. sol], {t, 0, time}, AxesLabel -> {x, y}, Pl
 \end{figure}
 \begin{figure}
 \includegraphics[scale=0.7]{figures/OsaX - tab. čas.pdf}
-\caption{Tabulka - čas (hodiny)}
+\caption{Tabulka - doba letu (hodiny)}
 \label{TabX1}
 \end{figure}
 \begin{figure}
@@ -727,7 +727,7 @@ Pro lepší představu se můžeme kouknout na obrázky \eqref{Xtraj1}, \eqref{X
 \end{figure}
 \begin{figure}
 \includegraphics[scale=0.7]{figures/OsaY - tab. čas.pdf}
-\caption{Tabulka - čas (hodiny)}
+\caption{Tabulka - doba letu (hodiny)}
 \label{TabY1}
 \end{figure}
 \begin{figure}
@@ -740,30 +740,35 @@ Koukneme se na start z osy Y.
 Tento případ začíná být už zajímavější. Pro velká $h$ a malá $Y$ je trajektorie podobná trajektorii, která začíná z osy X. Na obrázku \eqref{Ytraj} lze pozorovat, že čím je $Y$ dále od počátku, tak se trajektorie protahuje. Toto samé platí, když hodnotu $h$ snižujeme, což lze pozorovat na obrázku \eqref{Ytraj0.1}. V tabulkách \eqref{TabY1} a \eqref{TabY2} máme časy a startovní úhly pro různé pozice. Když porovnáme časy, které jsem získali při studování startů z osy X a osy Y, můžeme si všimnout, že jsme zpravidla rychleji v cíli, když startujeme z osy X. 
 \subsection{Kvadranty}
 \label{sec: Kvad}
+Zamíříme k obecnějšímu případu - start z kvadrantů.
+
+Vybrali jsme jen tři různé počáteční podmínky ze dvou kvadrantů (1. a 2.). Proč jen ze dvou kvadrantů? Jak jsme mohli vypozorovat ze startů z os X a Y, tak trajektorie jsou středově souměrná podle počátku (pokud je i jejich počáteční startovní bod středově souměrný podle počátku)\footnote{Tato vlastnost plyne z velmi pěkné symetrie větrného pole - je také středově souměrné podle počátku.}, takže není nutné studovat chování v 3. a 4. kvadrantu.
+
+Na obrázku \eqref{Ktraj1} můžeme pozorovat, jak se mění tvary trajektorií v závislosti na počátečních podmínkách. Na obrázku \eqref{Ktraj10} lze vidět, že když zvětšíme $h$, tak trajektorie budou mít tendenci mířit přímo do cíle. V tabulkách \eqref{TabK1} a \eqref{TabK2} uvádíme zase dobu letu a startovní úhel.
 \begin{figure}
 \includegraphics[scale=0.7]{figures/Kvad2.pdf}
 \caption{Trajektorie, start v kvadrantu, h = 1}
-\label{Ytraj}
+\label{Ktraj1}
 \end{figure}
 \begin{figure}
 \includegraphics[scale=0.7]{figures/Kvad3.pdf}
 \caption{Trajektorie, start v kvadrantu, h = 10}
-\label{Ytraj0.1}
+\label{Ktraj10}
 \end{figure}
 \begin{figure}
 \includegraphics[scale=0.7]{figures/Kvad1.pdf}
-\caption{Trajektorie, start v kvadrantu, h = 0.1}
-\label{Ytraj0.1}
+\caption{Trajektorie, start v kvadrantu}
+\label{Ktraj}
 \end{figure}
 \begin{figure}
 \includegraphics[scale=0.7]{figures/Kvad - tab. čas.pdf}
-\caption{Tabulka - čas (hodiny)}
-\label{TabY1}
+\caption{Tabulka - doba letu (hodiny)}
+\label{TabK1}
 \end{figure}
 \begin{figure}
 \includegraphics[scale=0.7]{figures/Kvad - tab. beta.pdf}
 \caption{Tabulka - startovní úhel (radiány)}
-\label{TabY2}
+\label{TabK2}
 \end{figure}
 
 
